@@ -192,6 +192,7 @@ main > section:last-of-type {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .game-card::after {
   content: '';
@@ -200,12 +201,14 @@ main > section:last-of-type {
   background: linear-gradient(145deg, transparent, rgba(255, 255, 255, 0.08));
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 .game-card:hover::after {
   opacity: 1;
 }
 .game-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 30px 55px rgba(0, 0, 0, 0.45);
 }
 .game-card img {
   width: 100%;
@@ -246,14 +249,37 @@ main > section:last-of-type {
 }
 .faq-item {
   background: var(--card);
-  border-radius: 18px;
-  padding: 1.75rem;
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 15px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  overflow: hidden;
 }
-.faq-item h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.1rem;
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+.faq-answer {
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--muted);
 }
 .about-preview {
   display: grid;
@@ -272,6 +298,16 @@ main > section:last-of-type {
 }
 .site-footer a {
   color: var(--accent);
+}
+.footer-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+.footer-links a {
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 .author-bio {
   max-width: 420px;
