@@ -31,4 +31,33 @@ document.addEventListener('DOMContentLoaded', () => {
       cookieBanner.classList.add('hidden');
     });
   }
+
+  const modal = document.querySelector('.iframe-modal');
+  const modalFrame = modal?.querySelector('iframe');
+  const modalClosers = document.querySelectorAll('[data-modal-close]');
+  const openButtons = document.querySelectorAll('.play-btn[data-iframe]');
+
+  const closeModal = () => {
+    if (modal) {
+      modal.classList.remove('active');
+      if (modalFrame) {
+        modalFrame.src = '';
+      }
+    }
+  };
+
+  openButtons.forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const url = btn.getAttribute('data-iframe');
+      if (!url || !modal || !modalFrame) return;
+      modal.classList.add('active');
+      modalFrame.src = url;
+    });
+  });
+
+  modalClosers.forEach(el => el.addEventListener('click', closeModal));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
 });

@@ -373,6 +373,58 @@ iframe {
 .related-list a:hover {
   border-bottom-color: var(--accent);
 }
+.iframe-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 100;
+}
+.iframe-modal.active {
+  display: flex;
+}
+.iframe-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 2, 6, 0.8);
+  backdrop-filter: blur(6px);
+}
+.iframe-modal__dialog {
+  position: relative;
+  background: #0e0a1a;
+  border-radius: 24px;
+  padding: 1rem 1rem 1.5rem;
+  width: min(100%, 900px);
+  box-shadow: 0 35px 65px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.iframe-modal__dialog iframe {
+  width: 100%;
+  min-height: 520px;
+  border-radius: 18px;
+}
+.iframe-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--text);
+  font-size: 1.8rem;
+  line-height: 1;
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+}
+.iframe-modal__notice {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
 @media (max-width: 900px) {
   .site-nav {
     position: absolute;
@@ -401,5 +453,8 @@ iframe {
     position: fixed;
     left: 1rem;
     right: 1rem;
+  }
+  .iframe-modal__dialog iframe {
+    min-height: 420px;
   }
 }
