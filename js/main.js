@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nav.classList.toggle('open');
     });
   }
+
   const anchors = document.querySelectorAll('a[href^="#"]');
   anchors.forEach(anchor => {
     anchor.addEventListener('click', e => {
@@ -17,4 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  const cookieBanner = document.querySelector('.cookie-banner');
+  const cookieButton = document.querySelector('[data-cookie-accept]');
+  const cookieKey = 'stsCookieConsent';
+  if (cookieBanner && cookieButton) {
+    if (localStorage.getItem(cookieKey) === 'true') {
+      cookieBanner.classList.add('hidden');
+    }
+    cookieButton.addEventListener('click', () => {
+      localStorage.setItem(cookieKey, 'true');
+      cookieBanner.classList.add('hidden');
+    });
+  }
 });
